@@ -14,7 +14,7 @@ class RVAdapter(
     ) : RecyclerView.Adapter<RVAdapter.ViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-            val view: View = LayoutInflater.from(parent.context).inflate(R.layout.card_view_horse, parent, false)
+            val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_horse, parent, false)
             return ViewHolder(view)
         }
 

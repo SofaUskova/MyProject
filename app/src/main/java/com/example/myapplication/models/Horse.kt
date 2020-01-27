@@ -9,20 +9,20 @@ class Horse(val name: String?,
     private lateinit var horses: List<Horse>
 
     fun initializeData(): List<Horse>{
-        horses = listOf(Horse("name", "age", "mother", "father", "location"),
-            Horse("name", "age", "mother", "father", "location"),
-            Horse("name", "age", "mother", "father", "location"),
-            Horse("name", "age", "mother", "father", "location"),
-            Horse("name", "age", "mother", "father", "location"),
-            Horse("name", "age", "mother", "father", "location"),
-            Horse("name", "age", "mother", "father", "location"),
-            Horse("name", "age", "mother", "father", "location"),
-            Horse("name", "age", "mother", "father", "location"),
-            Horse("name", "age", "mother", "father", "location"),
-            Horse("name", "age", "mother", "father", "location"),
-            Horse("name", "age", "mother", "father", "location"),
-            Horse("name", "age", "mother", "father", "location"),
-            Horse("name", "age", "mother", "father", "location"))
+        horses = listOf(Horse("Клюква", "2010г.р.", " - Балерина", "Карнавал", "КСК \"Отрада\""),
+            Horse("Клюква", "2010г.р.", " - Балерина", "Карнавал", "КСК \"Отрада\""),
+            Horse("Клюква", "2010г.р.", " - Балерина", "Карнавал", "КСК \"Отрада\""),
+            Horse("Клюква", "2010г.р.", " - Балерина", "Карнавал", "КСК \"Отрада\""),
+            Horse("Клюква", "2010г.р.", " - Балерина", "Карнавал", "КСК \"Отрада\""),
+            Horse("Клюква", "2010г.р.", " - Балерина", "Карнавал", "КСК \"Отрада\""),
+            Horse("Клюква", "2010г.р.", " - Балерина", "Карнавал", "КСК \"Отрада\""),
+            Horse("Клюква", "2010г.р.", " - Балерина", "Карнавал", "КСК \"Отрада\""),
+            Horse("Клюква", "2010г.р.", " - Балерина", "Карнавал", "КСК \"Отрада\""),
+            Horse("Клюква", "2010г.р.", " - Балерина", "Карнавал", "КСК \"Отрада\""),
+            Horse("Клюква", "2010г.р.", " - Балерина", "Карнавал", "КСК \"Отрада\""),
+            Horse("Клюква", "2010г.р.", " - Балерина", "Карнавал", "КСК \"Отрада\""),
+            Horse("Клюква", "2010г.р.", " - Балерина", "Карнавал", "КСК \"Отрада\""),
+            Horse("Клюква", "2010г.р.", " - Балерина", "Карнавал", "КСК \"Отрада\""))
         return horses
     }
 

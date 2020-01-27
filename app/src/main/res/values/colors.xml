@@ -3,4 +3,6 @@
     <color name="colorPrimary">#607D8B</color>
     <color name="colorPrimaryDark">#536B77</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="separator">#ECEFF1</color>
+    <color name="textColor">#263238</color>
 </resources>
