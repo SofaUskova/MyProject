@@ -18,7 +18,7 @@
         tools:layout="@layout/fragment_favourites" />
 
     <fragment
-        android:id="@+id/navigation_ads"
+        android:id="@+id/navigation_adds"
         android:name="com.example.myapplication.ui.notifications.NotificationsFragment"
         android:label="@string/title_ads"
         tools:layout="@layout/fragment_ads" />

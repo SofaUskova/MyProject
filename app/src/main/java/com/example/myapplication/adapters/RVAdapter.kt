@@ -1,5 +1,7 @@
 package com.example.myapplication.adapters
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,9 +10,11 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.models.Horse
+import com.example.myapplication.ui.ShowInfoAboutHorse
 
 class RVAdapter(
-        private val horses: List<Horse>
+        private val horses: List<Horse>,
+        private val context: Context
     ) : RecyclerView.Adapter<RVAdapter.ViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -28,6 +32,12 @@ class RVAdapter(
             holder.mother.text = horses[position].mother
             holder.father.text = horses[position].father
             holder.location.text = horses[position].location
+            holder.color.text = horses[position].color
+            holder.price.text = horses[position].price
+
+            holder.cardView.setOnClickListener {
+                context.startActivity(Intent(context, ShowInfoAboutHorse::class.java))
+            }
         }
 
         inner class ViewHolder internal constructor(view: View) : RecyclerView.ViewHolder(view) {
@@ -36,7 +46,8 @@ class RVAdapter(
             internal val mother: TextView = view.findViewById(R.id.mother)
             internal val father: TextView = view.findViewById(R.id.father)
             internal val location: TextView = view.findViewById(R.id.location)
+            internal val color: TextView = view.findViewById(R.id.color)
+            internal val price: TextView = view.findViewById(R.id.price)
             internal val cardView: CardView = view.findViewById(R.id.cardView)
         }
-
 }

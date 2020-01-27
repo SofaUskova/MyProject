@@ -5,4 +5,5 @@
     <color name="colorWhite">#FFFFFF</color>
     <color name="separator">#ECEFF1</color>
     <color name="textColor">#263238</color>
+    <color name="textColorLight">#90A4AE</color>
 </resources>
