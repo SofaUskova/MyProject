@@ -5,6 +5,7 @@
 
     <!-- Search activity -->
     <dimen name="text_big_size">18sp</dimen>
-    <dimen name="text_large_size">16sp</dimen>
+    <dimen name="text_big_large_size">16sp</dimen>
+    <dimen name="text_large_size">13sp</dimen>
     <dimen name="text_small_size">10sp</dimen>
 </resources>
