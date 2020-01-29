@@ -1,6 +1,5 @@
-package com.example.myapplication.ui.home
+package com.example.myapplication.ui.favorite
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,16 +12,16 @@ import com.example.myapplication.R
 import com.example.myapplication.adapters.RVAdapter
 import com.example.myapplication.models.Horse
 
-class HomeFragment : Fragment() {
+class FavoriteFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var favoriteViewModel: FavoriteViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        homeViewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
+        favoriteViewModel = ViewModelProviders.of(this).get(FavoriteViewModel::class.java)
 
         val root = inflater.inflate(R.layout.fragment_search, container, false)
 

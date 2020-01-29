@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/navigation_search"
-        android:name="com.example.myapplication.ui.home.HomeFragment"
+        android:name="com.example.myapplication.ui.search.SearchFragment"
         android:label="@string/title_search"
         tools:layout="@layout/fragment_search" />
 
     <fragment
         android:id="@+id/navigation_favourites"
-        android:name="com.example.myapplication.ui.dashboard.DashboardFragment"
+        android:name="com.example.myapplication.ui.favorite.FavoriteFragment"
         android:label="@string/title_favourites"
         tools:layout="@layout/fragment_favourites" />
 
