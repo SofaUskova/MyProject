@@ -1,18 +1,24 @@
 package com.example.myapplication.adapters
 
-import android.content.ContentValues.TAG
-import android.util.Log
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat.getDrawable
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.models.Horse
+import com.example.myapplication.ui.search.DetailInformationActivity
+import kotlinx.android.synthetic.main.card_view_horse.view.*
 
 class RVAdapter(
-    private val horses: List<Horse>
+    private val horses: List<Horse>,
+    //TODO
+    private val activity: Context?
 ) : RecyclerView.Adapter<RVAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -35,10 +41,18 @@ class RVAdapter(
         holder.father.text = horses[position].father
         holder.location.text = horses[position].location
 
+        //TODO
         holder.cardView.setOnClickListener {
-            Log.e(TAG, "click cardView $position")
+            startActivity(activity!!, Intent(activity, DetailInformationActivity::class.java), null)
         }
 
+        //TODO
+        holder.cardView.imageButtonAddFavorite.apply {
+            setOnClickListener {
+                //TODO
+                background = getDrawable(activity!!, R.drawable.ic_favorite_added)
+            }
+        }
     }
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {

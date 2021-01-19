@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:scrollbars="none"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -8,16 +9,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <include layout="@layout/toolbar" />
+
         <View
             android:id="@+id/viewOne"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="8dp"
             android:background="#ECEFF1"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
         <HorizontalScrollView
             android:id="@+id/horizontalScrollView"
+            android:scrollbars="none"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -300,11 +304,11 @@
 
 
         <ImageButton
-            android:id="@+id/imageButtonAddFavorite"
+            android:id="@+id/imageButtonProfile"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginStart="16dp"
-            android:scaleType="centerCrop"
+            android:scaleType="centerInside"
             app:layout_constraintBottom_toBottomOf="@+id/textView3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView2"
@@ -318,7 +322,7 @@
             android:layout_marginTop="15dp"
             android:text="Киану Ривз"
             android:textColor="#263238"
-            app:layout_constraintStart_toEndOf="@+id/imageButtonAddFavorite"
+            app:layout_constraintStart_toEndOf="@+id/imageButtonProfile"
             app:layout_constraintTop_toBottomOf="@+id/viewFifty" />
 
 
@@ -338,7 +342,98 @@
             android:layout_height="1dp"
             android:layout_marginTop="8dp"
             android:background="#ECEFF1"
-            app:layout_constraintTop_toBottomOf="@+id/imageButtonAddFavorite" />
+            app:layout_constraintTop_toBottomOf="@+id/imageButtonProfile" />
 
+        <ImageButton
+            android:id="@+id/imageButtonAddFavorite"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/ic_favorite_black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewSix" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Избранное"
+            android:textColor="#263238"
+            app:layout_constraintStart_toStartOf="@+id/imageButtonAddFavorite"
+            app:layout_constraintTop_toBottomOf="@+id/imageButtonAddFavorite"
+            app:layout_constraintEnd_toEndOf="@+id/imageButtonAddFavorite"/>
+
+        <View
+            android:id="@+id/viewSix1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="#ECEFF1"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Похожие объявления"
+            android:textColor="#607D8B"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewSix1" />
+
+        <HorizontalScrollView
+            android:id="@+id/horizontalScrollView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:scrollbars="none"
+            android:paddingStart="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="105dp"
+                    android:layout_height="105dp"
+                    android:layout_marginEnd="16dp"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/f" />
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="105dp"
+                    android:layout_height="105dp"
+                    android:layout_marginEnd="16dp"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/p" />
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="105dp"
+                    android:layout_height="105dp"
+                    android:layout_marginEnd="16dp"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/d" />
+
+                <ImageView
+                    android:id="@+id/imageView8"
+                    android:layout_width="105dp"
+                    android:layout_height="105dp"
+                    android:layout_marginEnd="16dp"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/i" />
+            </LinearLayout>
+
+        </HorizontalScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

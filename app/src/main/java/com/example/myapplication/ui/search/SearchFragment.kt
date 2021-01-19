@@ -22,15 +22,15 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         homeViewModel = ViewModelProviders.of(this).get(SearchFragmentViewModel::class.java)
-        return inflater.inflate(R.layout.fragment_detail_information, container, false)
+        return inflater.inflate(R.layout.fragment_search, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
-//        recyclerView.layoutManager = LinearLayoutManager(activity)
-//        val adapter = RVAdapter(Horse("Клюква", "2010г.р.", "Балерина", "Карнавал - ", "КСК Отрада").initializeData())
-//        recyclerView.adapter = adapter
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(activity)
+        val adapter = RVAdapter(Horse("Клюква", "2010г.р.", "Балерина", "Карнавал - ", "КСК Отрада").initializeData(), activity)
+        recyclerView.adapter = adapter
     }
 }
