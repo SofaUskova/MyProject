@@ -8,11 +8,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat.startActivity
-import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.models.Horse
 import com.example.myapplication.ui.search.DetailInformationActivity
+import com.example.myapplication.ui.search.ViewingImagesActivity
 import kotlinx.android.synthetic.main.card_view_horse.view.*
 
 
@@ -58,10 +58,14 @@ class RVAdapter(
                 horses[position].favorite = false
             }
         }
+
+        holder.cardView.scrollLayout.setOnClickListener {
+            startActivity(activity!!, Intent(activity, ViewingImagesActivity::class.java), null)
+        }
     }
 
     fun updateData(sortByMore: Boolean) {
-        val sortedListHorses = if(sortByMore) {
+        val sortedListHorses = if (sortByMore) {
             horses.sortedBy { it.price }
         } else {
             horses.sortedByDescending { it.price }
