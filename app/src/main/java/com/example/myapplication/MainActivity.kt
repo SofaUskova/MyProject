@@ -1,17 +1,21 @@
 package com.example.myapplication
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.myapplication.ui.search.`interface`.OnActivityDataListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
+    private var mListener: OnActivityDataListener? = null
+    lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
-        val navController = findNavController(R.id.nav_host_fragment)
+        navController = findNavController(R.id.nav_host_fragment)
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
@@ -43,7 +47,17 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.action_search) {
             //TODO
-            Log.e("TAG", "click on menu")
+            val fragment = supportFragmentManager.fragments.first().childFragmentManager.fragments.first()
+            mListener = fragment as OnActivityDataListener
+
+            if(item.icon.constantState?.equals(ResourcesCompat.getDrawable(resources, R.drawable.ic_filter_small, null)?.constantState)!!) {
+                mListener?.onActivityDataListener(true)
+                item.icon = ResourcesCompat.getDrawable(resources, R.drawable.ic_filter_big, null)
+            } else {
+                mListener?.onActivityDataListener(false)
+                item.icon = ResourcesCompat.getDrawable(resources, R.drawable.ic_filter_small, null)
+            }
+
         }
         return true
     }

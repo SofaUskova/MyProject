@@ -8,13 +8,17 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.MainActivity
 import com.example.myapplication.R
 import com.example.myapplication.adapters.RVAdapter
 import com.example.myapplication.models.Horse
+import com.example.myapplication.ui.search.`interface`.OnActivityDataListener
+import kotlinx.android.synthetic.main.toolbar.view.*
 
-class SearchFragment : Fragment() {
+class SearchFragment : Fragment(), OnActivityDataListener {
 
     private lateinit var homeViewModel: SearchFragmentViewModel
+    private lateinit var adapter: RVAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,7 +34,11 @@ class SearchFragment : Fragment() {
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(activity)
-        val adapter = RVAdapter(Horse("Клюква", "2010г.р.", "Балерина", "Карнавал - ", "КСК Отрада").initializeData(), activity)
+        adapter = RVAdapter(Horse.initializeData(), activity)
         recyclerView.adapter = adapter
+    }
+
+    override fun onActivityDataListener(sortByMore: Boolean) {
+        adapter.updateData(sortByMore)
     }
 }
