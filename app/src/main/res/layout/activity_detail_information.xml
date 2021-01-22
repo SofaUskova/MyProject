@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -36,6 +35,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/viewOne">
 
                 <LinearLayout
+                    android:id="@+id/scrollLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
@@ -347,14 +347,28 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="8dp"
                 android:ellipsize="end"
-                android:maxLines="3"
                 android:lineSpacingExtra="4dp"
-                android:text="Отличная кобыла, подходит как под опытного всадника, так и под начинающего. Свободно ходит маршруты 110-120см. Может ехать простые маршруты выездки, одиночные барьеры 130-140см. Никогда не смотрит на барьер"
+                android:maxLines="4"
+                android:text="Отличная кобыла, подходит как под опытного всадника, так и под начинающего. Свободно ходит маршруты 110-120см. Может ехать простые маршруты выездки, одиночные барьеры 130-140см. Никогда не смотрит на барьер ывааываываываываываывавыаываываываываыfdszzzz sd dfsdf sdf dfsdf  fd ff f sfsfs fsdf sf ffs  f f ваываываываыв конец"
                 android:textColor="#263238"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/viewHour" />
+
+            <TextView
+                android:id="@+id/textFreeInformationOpen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:lineSpacingExtra="4dp"
+                android:text="Читать далее..."
+                android:textColor="#607D8B"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textFreeInformation" />
 
             <View
                 android:id="@+id/viewFifty"
@@ -362,7 +376,7 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="8dp"
                 android:background="#ECEFF1"
-                app:layout_constraintTop_toBottomOf="@+id/textFreeInformation" />
+                app:layout_constraintTop_toBottomOf="@+id/textFreeInformationOpen" />
 
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -371,10 +385,10 @@
                 android:layout_height="70dp"
                 android:layout_marginStart="16dp"
                 android:scaleType="centerCrop"
+                android:src="@drawable/kiany"
                 app:layout_constraintBottom_toBottomOf="@+id/textView3"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView2"
-                android:src="@drawable/kiany" />
+                app:layout_constraintTop_toTopOf="@+id/textView2" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -407,12 +421,12 @@
                 android:background="#ECEFF1"
                 app:layout_constraintTop_toBottomOf="@+id/imageButtonProfile" />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/imageButtonShare"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/ic_share_black"
+                android:src="@drawable/ic_share_black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.25"
                 app:layout_constraintStart_toStartOf="parent"
@@ -428,12 +442,12 @@
                 app:layout_constraintStart_toStartOf="@+id/imageButtonShare"
                 app:layout_constraintTop_toBottomOf="@+id/imageButtonShare" />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/imageButtonAddFavorite"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/ic_favorite_black"
+                android:src="@drawable/ic_favorite_black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.75"
                 app:layout_constraintStart_toStartOf="parent"
@@ -525,15 +539,19 @@
 
     </ScrollView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floating_action_button"
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/floatButtonTelephone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
+        android:text="8-919-209-09-82"
         app:backgroundTint="#607D8B"
-        app:fabCustomSize="66dp"
-        android:layout_gravity="bottom|right"
-        app:srcCompat="@drawable/ic_phone_white"
-        app:tint="#EEEEEE" />
+        android:textSize="16sp"
+        app:iconSize="26dp"
+        android:textAllCaps="false"
+        android:textColor="#EEEEEE"
+        app:icon="@drawable/ic_phone_white"
+        app:iconTint="#EEEEEE" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
