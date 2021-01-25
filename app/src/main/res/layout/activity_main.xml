@@ -30,7 +30,7 @@
         app:navGraph="@navigation/mobile_navigation" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/extended_fab"
+        android:id="@+id/extendedFabFilter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -41,7 +41,7 @@
         android:textAllCaps="false"
         android:textColor="#EEEEEE"
         android:textSize="16sp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:backgroundTint="#607D8B"
         app:icon="@drawable/ic_filter"
         app:iconTint="#EEEEEE"

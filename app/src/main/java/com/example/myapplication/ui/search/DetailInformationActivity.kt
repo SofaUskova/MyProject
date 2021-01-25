@@ -12,7 +12,6 @@ import com.example.myapplication.R
 import kotlinx.android.synthetic.main.activity_detail_information.*
 import kotlinx.android.synthetic.main.toolbar.*
 
-
 class DetailInformationActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

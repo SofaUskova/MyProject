@@ -8,12 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.MainActivity
 import com.example.myapplication.R
 import com.example.myapplication.adapters.RVAdapter
 import com.example.myapplication.models.Horse
 import com.example.myapplication.ui.search.`interface`.OnActivityDataListener
-import kotlinx.android.synthetic.main.toolbar.view.*
 
 class SearchFragment : Fragment(), OnActivityDataListener {
 
@@ -36,6 +34,7 @@ class SearchFragment : Fragment(), OnActivityDataListener {
         recyclerView.layoutManager = LinearLayoutManager(activity)
         adapter = RVAdapter(Horse.initializeData(), activity)
         recyclerView.adapter = adapter
+
     }
 
     override fun onActivityDataListener(sortByMore: Boolean) {

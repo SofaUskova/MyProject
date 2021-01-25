@@ -9,13 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.search.FilerActivity"
+            android:label="Фильтр" />
         <activity
             android:name=".ui.search.DetailInformationActivity"
             android:label="" />
         <activity
             android:name=".ui.search.ViewingImagesActivity"
             android:label="" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

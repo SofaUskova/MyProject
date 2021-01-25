@@ -7,21 +7,33 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
+import com.example.myapplication.adapters.RVAdapter
+import com.example.myapplication.models.Horse
 
 class FavoriteFragment : Fragment() {
 
     private lateinit var favoriteFragmentViewModel: FavoriteFragmentViewModel
+    private lateinit var adapter: RVAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        favoriteFragmentViewModel =
-            ViewModelProviders.of(this).get(FavoriteFragmentViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_favourite, container, false)
-        root.findViewById<TextView>(R.id.text_dashboard).text = "избранное"
-        return root
+        favoriteFragmentViewModel = ViewModelProviders.of(this).get(FavoriteFragmentViewModel::class.java)
+        return inflater.inflate(R.layout.fragment_favourite, container, false)
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(activity)
+        adapter = RVAdapter(Horse.initializeData(), activity)
+        recyclerView.adapter = adapter
+    }
+
 }
