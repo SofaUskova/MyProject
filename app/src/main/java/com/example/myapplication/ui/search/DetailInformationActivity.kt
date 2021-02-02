@@ -24,7 +24,7 @@ class DetailInformationActivity : AppCompatActivity() {
         }
 
         scrollLayout.setOnClickListener {
-            findNavController(this, R.id.nav_host_fragment).navigate(R.id.action_navigation_search_to_viewingImagesActivity)
+            //findNavController(this, R.id.nav_host_fragment).navigate(R.id.action_navigation_search_to_viewingImagesActivity)
         }
 
         textFreeInformationOpen.setOnClickListener {
