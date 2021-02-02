@@ -1,6 +1,5 @@
 package com.example.myapplication.adapters
 
-import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -8,10 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat.startActivity
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.models.Horse
-import com.example.myapplication.ui.search.DetailInformationActivity
 import com.example.myapplication.ui.search.ViewingImagesActivity
 import kotlinx.android.synthetic.main.card_view_horse.view.*
 
@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.card_view_horse.view.*
 class RVAdapter(
     private val horses: MutableList<Horse>,
     //TODO
-    private val activity: Context?
+    private val context: Fragment?
 ) : RecyclerView.Adapter<RVAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -43,12 +43,10 @@ class RVAdapter(
         holder.location.text = horses[position].location
         holder.price.text = horses[position].price.toString()
 
-        //TODO
         holder.cardView.setOnClickListener {
-            startActivity(activity!!, Intent(activity, DetailInformationActivity::class.java), null)
+            NavHostFragment.findNavController(context!!).navigate(R.id.action_navigation_search_to_detailInformationActivity)
         }
 
-        //TODO
         holder.cardView.imageButtonAddFavorite.setOnClickListener {
             if (!horses[position].favorite) {
                 holder.cardView.imageButtonAddFavorite.setImageResource(R.drawable.ic_favorite_added)
@@ -60,7 +58,7 @@ class RVAdapter(
         }
 
         holder.cardView.scrollLayout.setOnClickListener {
-            startActivity(activity!!, Intent(activity, ViewingImagesActivity::class.java), null)
+            NavHostFragment.findNavController(context!!).navigate(R.id.action_navigation_search_to_viewingImagesActivity)
         }
     }
 

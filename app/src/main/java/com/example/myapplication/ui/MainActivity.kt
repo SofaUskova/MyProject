@@ -1,11 +1,11 @@
 package com.example.myapplication.ui
 
-import android.content.Intent
+
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
+
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isNotEmpty
 import androidx.navigation.NavController
@@ -45,11 +45,7 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         extendedFabFilter.setOnClickListener {
-            ContextCompat.startActivity(
-                this,
-                Intent(this, FilerActivity::class.java),
-                null
-            )
+            //Navigation.findNavController(it).navigate(R.id.action_navigation_search_to_viewingImagesActivity)
         }
 
         navController.addOnDestinationChangedListener { controller, destination, arguments ->

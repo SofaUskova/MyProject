@@ -1,13 +1,12 @@
 package com.example.myapplication.ui.search
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils.TruncateAt
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.navigation.Navigation
 import com.example.myapplication.R
 import kotlinx.android.synthetic.main.activity_detail_information.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -25,11 +24,7 @@ class DetailInformationActivity : AppCompatActivity() {
         }
 
         scrollLayout.setOnClickListener {
-            ContextCompat.startActivity(
-                this,
-                Intent(this, ViewingImagesActivity::class.java),
-                null
-            )
+            findNavController(this, R.id.nav_host_fragment).navigate(R.id.action_navigation_search_to_viewingImagesActivity)
         }
 
         textFreeInformationOpen.setOnClickListener {

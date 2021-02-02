@@ -9,7 +9,16 @@
         android:id="@+id/navigation_search"
         android:name="com.example.myapplication.ui.search.SearchFragment"
         android:label="@string/title_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+
+        <action
+            android:id="@+id/action_navigation_search_to_detailInformationActivity"
+            app:destination="@id/detailInformationActivity" />
+
+        <action
+            android:id="@+id/action_navigation_search_to_viewingImagesActivity"
+            app:destination="@id/viewingImagesActivity" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_favourite"
@@ -28,5 +37,17 @@
         android:name="com.example.myapplication.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
+
+    <activity
+        android:id="@+id/detailInformationActivity"
+        android:name="com.example.myapplication.ui.search.DetailInformationActivity"
+        android:label=""
+        tools:layout="@layout/activity_detail_information"/>
+
+    <activity
+        android:id="@+id/viewingImagesActivity"
+        android:name="com.example.myapplication.ui.search.ViewingImagesActivity"
+        android:label=""
+        tools:layout="@layout/activity_viewing_images"/>
 
 </navigation>
