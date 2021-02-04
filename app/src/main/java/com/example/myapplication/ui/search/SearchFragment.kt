@@ -8,12 +8,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.myapplication.DatabaseBuilder
 import com.example.myapplication.R
 import com.example.myapplication.adapters.RVAdapter
-import com.example.myapplication.ui.search.`interface`.OnActivityDataListener
 import kotlinx.android.synthetic.main.fragment_search.*
 
-class SearchFragment : Fragment(), OnActivityDataListener {
+class SearchFragment : Fragment() {
 
     private lateinit var searchFragmentViewModel: SearchFragmentViewModel
     private lateinit var adapter: RVAdapter
@@ -24,11 +24,16 @@ class SearchFragment : Fragment(), OnActivityDataListener {
         savedInstanceState: Bundle?
     ): View? {
         searchFragmentViewModel = ViewModelProvider(this).get(SearchFragmentViewModel::class.java)
+        val dbHelper = DatabaseBuilder.getInstance(requireActivity().application)
+        searchFragmentViewModel.fetchUsers(dbHelper)
         return inflater.inflate(R.layout.fragment_search, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+//        appDatabase.daoHorse()
+//            ?.insert(Horse(1, "name", "21", "mother", "father", "location", 200000, true))
 
         initObservers()
     }
@@ -39,9 +44,5 @@ class SearchFragment : Fragment(), OnActivityDataListener {
             adapter = RVAdapter(it, this)
             recyclerView.adapter = adapter
         })
-    }
-
-    override fun onActivityDataListener(sortByMore: Boolean) {
-        adapter.updateData(sortByMore)
     }
 }

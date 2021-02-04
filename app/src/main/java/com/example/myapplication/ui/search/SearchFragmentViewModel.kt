@@ -2,6 +2,7 @@ package com.example.myapplication.ui.search
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.myapplication.AppDatabase
 import com.example.myapplication.models.Horse
 
 class SearchFragmentViewModel : ViewModel() {
@@ -11,7 +12,8 @@ class SearchFragmentViewModel : ViewModel() {
      */
     val dataList = MutableLiveData<MutableList<Horse>>()
 
-    init {
-        dataList.postValue(Horse.initializeData())
+    fun fetchUsers(appDatabase: AppDatabase) {
+        //TODO нужен поток
+        //appDatabase.daoHorse().getAll()
     }
 }

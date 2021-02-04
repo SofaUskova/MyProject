@@ -31,7 +31,7 @@ class FavoriteFragment : Fragment() {
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(activity)
-        adapter = RVAdapter(Horse.initializeData(), this)
+        adapter = RVAdapter(mutableListOf(Horse(1, "name", "21", "mother", "father", "location", 200000, true)), this)
         recyclerView.adapter = adapter
     }
 

@@ -1,24 +1,25 @@
 package com.example.myapplication.models
 
-class Horse(
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "horses")
+data class Horse(
+    @PrimaryKey(autoGenerate = true)
+    val di: Int,
+    @ColumnInfo(name = "name")
     val name: String?,
+    @ColumnInfo(name = "age")
     val age: String?,
+    @ColumnInfo(name = "mother")
     val mother: String?,
+    @ColumnInfo(name = "father")
     val father: String?,
+    @ColumnInfo(name = "location")
     val location: String?,
+    @ColumnInfo(name = "price")
     val price: Int,
+    @ColumnInfo(name = "favorite")
     var favorite: Boolean = false
-) {
-
-    companion object {
-
-        fun initializeData(): MutableList<Horse> {
-            return mutableListOf(
-                Horse("Клюква", "2010г.р.", "Балерина", "Карнавал - ", "КСК Отрада", 250000),
-                Horse("Клюква", "2010г.р.", "Балерина", "Карнавал - ", "КСК Отрада", 50000),
-                Horse("Клюква", "2010г.р.", "Балерина", "Карнавал - ", "КСК Отрада", 150000)
-            )
-        }
-
-    }
-}
+)
