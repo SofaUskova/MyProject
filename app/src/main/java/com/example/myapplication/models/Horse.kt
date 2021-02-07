@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "horses")
 data class Horse(
     @PrimaryKey(autoGenerate = true)
-    val di: Int,
+    val id: Int,
     @ColumnInfo(name = "name")
     val name: String?,
     @ColumnInfo(name = "age")
@@ -16,10 +16,12 @@ data class Horse(
     val mother: String?,
     @ColumnInfo(name = "father")
     val father: String?,
+    @ColumnInfo(name = "color")
+    val color: String?,
     @ColumnInfo(name = "location")
     val location: String?,
     @ColumnInfo(name = "price")
-    val price: Int,
+    val price: String?,
     @ColumnInfo(name = "favorite")
     var favorite: Boolean = false
 )

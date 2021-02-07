@@ -28,11 +28,6 @@ class FavoriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(activity)
-        adapter = RVAdapter(mutableListOf(Horse(1, "name", "21", "mother", "father", "location", 200000, true)), this)
-        recyclerView.adapter = adapter
     }
 
 }
