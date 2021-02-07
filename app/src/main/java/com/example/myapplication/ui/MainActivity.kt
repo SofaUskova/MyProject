@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isNotEmpty
 import androidx.navigation.NavController
@@ -14,7 +13,6 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.myapplication.R
-import com.example.myapplication.ui.search.FilerActivity
 import com.example.myapplication.ui.search.`interface`.OnActivityDataListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
