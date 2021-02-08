@@ -12,7 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.AppDatabase
 import com.example.myapplication.DatabaseBuilder
 import com.example.myapplication.R
-import com.example.myapplication.adapters.RVAdapter
+import com.example.myapplication.adapters.HorseLoadStateAdapter
+import com.example.myapplication.adapters.HorseListAdapter
 import com.example.myapplication.models.Horse
 import kotlinx.android.synthetic.main.fragment_search.*
 import kotlinx.coroutines.Job
@@ -23,7 +24,7 @@ import kotlin.concurrent.thread
 class SearchFragment : Fragment() {
 
     private lateinit var searchFragmentViewModel: SearchFragmentViewModel
-    private lateinit var adapter: RVAdapter
+    private lateinit var horseListAdapter: HorseListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,7 +47,7 @@ class SearchFragment : Fragment() {
 
     private fun addAllDatabase(database: AppDatabase) {
         val list = mutableListOf<Horse>()
-        for (i in 1..100) {
+        for (i in 1..10) {
             list.add(Horse(i, "name$i", "2010г.р.", "mother", "father", "color","location", "200 000", true))
         }
 
@@ -56,19 +57,21 @@ class SearchFragment : Fragment() {
     }
 
     private fun initAdapter() {
-        recyclerView.layoutManager = LinearLayoutManager(activity)
-        adapter = RVAdapter()
-        recyclerView.adapter = adapter
+        horseListAdapter = HorseListAdapter()
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(activity)
+            adapter = horseListAdapter.withLoadStateFooter(
+                footer = HorseLoadStateAdapter { horseListAdapter.retry() }
+            )
+        }
     }
 
-    //TODO 4
     private var searchJob: Job? = null
     private fun search(database: AppDatabase) {
         searchJob?.cancel()
         searchJob = lifecycleScope.launch {
             searchFragmentViewModel.getSearchResultStream(database).collectLatest {
-                Log.e("TAG", "loadPage")
-                adapter.submitData(it)
+                horseListAdapter.submitData(it)
             }
         }
     }

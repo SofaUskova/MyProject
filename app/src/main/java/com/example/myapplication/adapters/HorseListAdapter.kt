@@ -6,8 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import com.example.myapplication.HorseViewHolder
 import com.example.myapplication.models.Horse
 
-//TODO 3
-class RVAdapter : PagingDataAdapter<Horse, HorseViewHolder>(REPO_COMPARATOR) {
+class HorseListAdapter : PagingDataAdapter<Horse, HorseViewHolder>(REPO_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HorseViewHolder {
         return HorseViewHolder.create(parent)

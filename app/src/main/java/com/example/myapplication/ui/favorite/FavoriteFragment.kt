@@ -6,16 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
-import com.example.myapplication.adapters.RVAdapter
-import com.example.myapplication.models.Horse
+import com.example.myapplication.adapters.HorseListAdapter
 
 class FavoriteFragment : Fragment() {
 
     private lateinit var favoriteFragmentViewModel: FavoriteFragmentViewModel
-    private lateinit var adapter: RVAdapter
+    private lateinit var adapter: HorseListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,

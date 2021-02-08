@@ -21,6 +21,8 @@ object DatabaseBuilder {
             context.applicationContext,
             AppDatabase::class.java,
             "horseBase"
-        ).fallbackToDestructiveMigration().build()
+        ).fallbackToDestructiveMigration()
+            .allowMainThreadQueries()
+            .build()
 
 }
