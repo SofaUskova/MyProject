@@ -3,8 +3,10 @@ package com.example.myapplication
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.myapplication.models.Horse
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
 import java.io.IOException
-import kotlin.concurrent.thread
 
 class HorsePagingSource(
     private val appDatabase: AppDatabase
@@ -14,8 +16,13 @@ class HorsePagingSource(
         return try {
             val nextKey = params.key ?: 1
 
+            val list = withContext(Dispatchers.IO) {
+                delay(2000)
+                appDatabase.daoHorse().getAll()
+            }
+
             LoadResult.Page(
-                data = appDatabase.daoHorse().getAll(),
+                data = list,
                 prevKey = if (nextKey == 1) null else nextKey - 1,
                 nextKey = if (nextKey == 10) null else nextKey + 1
             )

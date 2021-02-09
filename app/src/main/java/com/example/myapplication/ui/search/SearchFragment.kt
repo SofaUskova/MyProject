@@ -1,19 +1,20 @@
 package com.example.myapplication.ui.search
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.AppDatabase
 import com.example.myapplication.DatabaseBuilder
 import com.example.myapplication.R
-import com.example.myapplication.adapters.HorseLoadStateAdapter
 import com.example.myapplication.adapters.HorseListAdapter
+import com.example.myapplication.adapters.HorseLoadStateAdapter
 import com.example.myapplication.models.Horse
 import kotlinx.android.synthetic.main.fragment_search.*
 import kotlinx.coroutines.Job
@@ -60,9 +61,15 @@ class SearchFragment : Fragment() {
         horseListAdapter = HorseListAdapter()
         recyclerView.apply {
             layoutManager = LinearLayoutManager(activity)
-            adapter = horseListAdapter.withLoadStateFooter(
+            adapter = horseListAdapter.withLoadStateHeaderAndFooter(
+                header = HorseLoadStateAdapter { horseListAdapter.retry() },
                 footer = HorseLoadStateAdapter { horseListAdapter.retry() }
             )
+        }
+        horseListAdapter.addLoadStateListener { loadState ->
+            recyclerView.isVisible = loadState.source.refresh is LoadState.NotLoading
+            message.isVisible = loadState.source.refresh is LoadState.Loading
+            //error_msg.isVisible = loadState.source.refresh is LoadState.Error
         }
     }
 
@@ -70,7 +77,7 @@ class SearchFragment : Fragment() {
     private fun search(database: AppDatabase) {
         searchJob?.cancel()
         searchJob = lifecycleScope.launch {
-            searchFragmentViewModel.getSearchResultStream(database).collectLatest {
+            searchFragmentViewModel.searchHorse(database).collectLatest {
                 horseListAdapter.submitData(it)
             }
         }
