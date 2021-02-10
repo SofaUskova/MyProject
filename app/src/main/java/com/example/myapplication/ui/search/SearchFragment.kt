@@ -10,12 +10,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.myapplication.AppDatabase
-import com.example.myapplication.DatabaseBuilder
+import com.example.myapplication.db.AppDatabase
+import com.example.myapplication.db.DatabaseBuilder
 import com.example.myapplication.R
-import com.example.myapplication.adapters.HorseListAdapter
+import com.example.myapplication.adapters.HorsePagingDataAdapter
 import com.example.myapplication.adapters.HorseLoadStateAdapter
 import com.example.myapplication.models.Horse
+import com.example.myapplication.ui.search.viewModels.SearchFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_search.*
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
@@ -25,7 +26,7 @@ import kotlin.concurrent.thread
 class SearchFragment : Fragment() {
 
     private lateinit var searchFragmentViewModel: SearchFragmentViewModel
-    private lateinit var horseListAdapter: HorseListAdapter
+    private lateinit var horsePagingDataAdapter: HorsePagingDataAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,15 +59,15 @@ class SearchFragment : Fragment() {
     }
 
     private fun initAdapter() {
-        horseListAdapter = HorseListAdapter()
+        horsePagingDataAdapter = HorsePagingDataAdapter()
         recyclerView.apply {
             layoutManager = LinearLayoutManager(activity)
-            adapter = horseListAdapter.withLoadStateHeaderAndFooter(
-                header = HorseLoadStateAdapter { horseListAdapter.retry() },
-                footer = HorseLoadStateAdapter { horseListAdapter.retry() }
+            adapter = horsePagingDataAdapter.withLoadStateHeaderAndFooter(
+                header = HorseLoadStateAdapter { horsePagingDataAdapter.retry() },
+                footer = HorseLoadStateAdapter { horsePagingDataAdapter.retry() }
             )
         }
-        horseListAdapter.addLoadStateListener { loadState ->
+        horsePagingDataAdapter.addLoadStateListener { loadState ->
             recyclerView.isVisible = loadState.source.refresh is LoadState.NotLoading
             message.isVisible = loadState.source.refresh is LoadState.Loading
             //error_msg.isVisible = loadState.source.refresh is LoadState.Error
@@ -78,7 +79,7 @@ class SearchFragment : Fragment() {
         searchJob?.cancel()
         searchJob = lifecycleScope.launch {
             searchFragmentViewModel.searchHorse(database).collectLatest {
-                horseListAdapter.submitData(it)
+                horsePagingDataAdapter.submitData(it)
             }
         }
     }

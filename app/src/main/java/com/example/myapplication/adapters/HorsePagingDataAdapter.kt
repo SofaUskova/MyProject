@@ -4,16 +4,14 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.HorseViewHolder
 import com.example.myapplication.R
-import com.example.myapplication.SeparatorViewHolder
-import com.example.myapplication.ui.UiModel
+import com.example.myapplication.models.UiModel
 
-class HorseListAdapter : PagingDataAdapter<UiModel, RecyclerView.ViewHolder>(UI_MODEL_COMPARATOR) {
+class HorsePagingDataAdapter : PagingDataAdapter<UiModel, RecyclerView.ViewHolder>(UI_MODEL_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == R.layout.card_view_horse) {
-            HorseViewHolder.create(parent)
+            HorsePagingDataViewHolder.create(parent)
         } else {
             SeparatorViewHolder.create(parent)
         }
@@ -31,7 +29,10 @@ class HorseListAdapter : PagingDataAdapter<UiModel, RecyclerView.ViewHolder>(UI_
         val uiModel = getItem(position)
         uiModel.let {
             when (uiModel) {
-                is UiModel.HorseItem -> (holder as HorseViewHolder).bind(uiModel.horse)
+                is UiModel.HorseItem -> {
+                    (holder as HorsePagingDataViewHolder).bind(uiModel.horse)
+                    (holder as HorsePagingDataViewHolder).initListeners(uiModel.horse)
+                }
                 is UiModel.SeparatorItem -> (holder as SeparatorViewHolder).bind(uiModel.description)
             }
         }

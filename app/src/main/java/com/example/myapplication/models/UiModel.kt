@@ -1,6 +1,4 @@
-package com.example.myapplication.ui
-
-import com.example.myapplication.models.Horse
+package com.example.myapplication.models
 
 sealed class UiModel {
     data class HorseItem(val horse: Horse) : UiModel()

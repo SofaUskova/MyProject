@@ -28,8 +28,8 @@ class HorseLoadStateViewHolder(
             errorMess.text = loadState.error.localizedMessage
         }
         progressBar.isVisible = loadState is LoadState.Loading
-        retryButton.isVisible = loadState !is LoadState.Loading
-        errorMess.isVisible = loadState !is LoadState.Loading
+        retryButton.isVisible = loadState is LoadState.Error
+        errorMess.isVisible = loadState is LoadState.Error
     }
 
     companion object {

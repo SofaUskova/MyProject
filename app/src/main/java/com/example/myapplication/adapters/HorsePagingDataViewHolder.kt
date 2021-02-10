@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,10 +6,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.R
 import com.example.myapplication.models.Horse
 import kotlinx.android.synthetic.main.card_view_horse.view.*
 
-class HorseViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class HorsePagingDataViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val name: TextView = view.findViewById(R.id.name)
     private val age: TextView = view.findViewById(R.id.age)
     private val mother: TextView = view.findViewById(R.id.mother)
@@ -54,10 +55,10 @@ class HorseViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     }
 
     companion object {
-        fun create(parent: ViewGroup): HorseViewHolder {
+        fun create(parent: ViewGroup): HorsePagingDataViewHolder {
             val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.card_view_horse, parent, false)
-            return HorseViewHolder(view)
+            return HorsePagingDataViewHolder(view)
         }
     }
 }

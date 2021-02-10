@@ -7,12 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.myapplication.R
-import com.example.myapplication.adapters.HorseListAdapter
+import com.example.myapplication.adapters.HorsePagingDataAdapter
 
 class FavoriteFragment : Fragment() {
 
     private lateinit var favoriteFragmentViewModel: FavoriteFragmentViewModel
-    private lateinit var adapter: HorseListAdapter
+    private lateinit var adapter: HorsePagingDataAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,

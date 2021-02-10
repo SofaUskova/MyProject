@@ -1,12 +1,12 @@
-package com.example.myapplication.ui.search
+package com.example.myapplication.ui.search.viewModels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.*
-import com.example.myapplication.AppDatabase
+import com.example.myapplication.db.AppDatabase
 import com.example.myapplication.HorsePagingSource
 import com.example.myapplication.models.Horse
-import com.example.myapplication.ui.UiModel
+import com.example.myapplication.models.UiModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -36,7 +36,8 @@ class SearchFragmentViewModel : ViewModel() {
         return Pager(
             config = PagingConfig(
                 pageSize = 5,
-                enablePlaceholders = false
+                enablePlaceholders = false,
+                maxSize = 15
             ),
             pagingSourceFactory = {
                 HorsePagingSource(appDatabase)

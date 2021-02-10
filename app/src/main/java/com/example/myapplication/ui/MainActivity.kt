@@ -64,21 +64,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.action_search) {
-            //TODO
-            val fragment = supportFragmentManager.fragments.first().childFragmentManager.fragments.first()
-            mListener = fragment as OnActivityDataListener
-
-            if(item.icon.constantState?.equals(ResourcesCompat.getDrawable(resources,
-                    R.drawable.ic_filter_small, null)?.constantState)!!) {
-                mListener?.onActivityDataListener(true)
-                item.icon = ResourcesCompat.getDrawable(resources, R.drawable.ic_filter_big, null)
-            } else {
-                mListener?.onActivityDataListener(false)
-                item.icon = ResourcesCompat.getDrawable(resources, R.drawable.ic_filter_small, null)
-            }
-
-        }
+//        if (item.itemId == R.id.action_search) {
+//            //TODO
+//            val fragment = supportFragmentManager.fragments.first().childFragmentManager.fragments.first()
+//            mListener = fragment as OnActivityDataListener
+//
+//            if(item.icon.constantState?.equals(ResourcesCompat.getDrawable(resources,
+//                    R.drawable.ic_filter_small, null)?.constantState)!!) {
+//                mListener?.onActivityDataListener(true)
+//                item.icon = ResourcesCompat.getDrawable(resources, R.drawable.ic_filter_big, null)
+//            } else {
+//                mListener?.onActivityDataListener(false)
+//                item.icon = ResourcesCompat.getDrawable(resources, R.drawable.ic_filter_small, null)
+//            }
+//
+//        }
         return true
     }
 }
