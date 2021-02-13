@@ -51,15 +51,4 @@ class HorsePagingDataAdapter : PagingDataAdapter<UiModel, RecyclerView.ViewHolde
                 oldItem == newItem
         }
     }
-
-//    fun updateData(sortByMore: Boolean) {
-//        val sortedListHorses = if (sortByMore) {
-//            horses.sortedBy { it.price }
-//        } else {
-//            horses.sortedByDescending { it.price }
-//        }
-//        horses.clear()
-//        horses.addAll(sortedListHorses)
-//        notifyDataSetChanged()
-//    }
 }

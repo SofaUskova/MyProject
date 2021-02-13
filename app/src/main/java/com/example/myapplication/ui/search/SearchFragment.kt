@@ -16,6 +16,7 @@ import com.example.myapplication.R
 import com.example.myapplication.adapters.HorsePagingDataAdapter
 import com.example.myapplication.adapters.HorseLoadStateAdapter
 import com.example.myapplication.models.Horse
+import com.example.myapplication.ui.interfaces.OnActivityDataListener
 import com.example.myapplication.ui.search.viewModels.SearchFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_search.*
 import kotlinx.coroutines.Job
@@ -23,10 +24,11 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlin.concurrent.thread
 
-class SearchFragment : Fragment() {
+class SearchFragment : Fragment(), OnActivityDataListener {
 
     private lateinit var searchFragmentViewModel: SearchFragmentViewModel
     private lateinit var horsePagingDataAdapter: HorsePagingDataAdapter
+    private var searchJob: Job? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,17 +42,17 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val database = DatabaseBuilder.getInstance(requireActivity().application)
+        searchFragmentViewModel.database = DatabaseBuilder.getInstance(requireActivity().application)
 
         //addAllDatabase(database)
         initAdapter()
-        search(database)
+        searchData(searchFragmentViewModel.database)
     }
 
     private fun addAllDatabase(database: AppDatabase) {
         val list = mutableListOf<Horse>()
         for (i in 1..10) {
-            list.add(Horse(i, "name$i", "2010г.р.", "mother", "father", "color","location", "200 000", true))
+            list.add(Horse(i, "name$i", "2010г.р.", "mother", "father", "color","location", "20000$i", true))
         }
 
         thread {
@@ -74,13 +76,26 @@ class SearchFragment : Fragment() {
         }
     }
 
-    private var searchJob: Job? = null
-    private fun search(database: AppDatabase) {
+    private fun searchData(database: AppDatabase) {
         searchJob?.cancel()
         searchJob = lifecycleScope.launch {
             searchFragmentViewModel.searchHorse(database).collectLatest {
                 horsePagingDataAdapter.submitData(it)
             }
         }
+    }
+
+    fun sortedData(sortByMore: Boolean, database: AppDatabase) {
+        searchJob?.cancel()
+        searchJob = lifecycleScope.launch {
+            searchFragmentViewModel.searchHorse(database, sortByMore).collectLatest {
+                horsePagingDataAdapter.notifyDataSetChanged()
+                horsePagingDataAdapter.submitData(it)
+            }
+        }
+    }
+
+    override fun onActivityDataListener(sortByMore: Boolean) {
+        sortedData(sortByMore, database)
     }
 }

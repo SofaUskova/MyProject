@@ -10,7 +10,8 @@ import kotlinx.coroutines.withContext
 import java.io.IOException
 
 class HorsePagingSource(
-    private val appDatabase: AppDatabase
+    private val appDatabase: AppDatabase,
+    private val sortByMore: Boolean? = null
 ) : PagingSource<Int, Horse>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Horse> {
@@ -23,12 +24,22 @@ class HorsePagingSource(
             }
 
             LoadResult.Page(
-                data = list,
+                data = sortedData(sortByMore, list) ?: list,
                 prevKey = if (nextKey == 1) null else nextKey - 1,
                 nextKey = if (nextKey == 10) null else nextKey + 1
             )
         } catch (exception: IOException) {
             return LoadResult.Error(exception)
+        }
+    }
+
+    private fun sortedData(sortByMore: Boolean?, list: List<Horse>): List<Horse>? {
+        return sortByMore?.let {isSorted ->
+            if (isSorted) {
+                list.sortedBy { it.price?.toInt() }
+            } else {
+                list.sortedByDescending { it.price?.toInt() }
+            }
         }
     }
 

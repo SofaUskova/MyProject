@@ -22,16 +22,6 @@ class HorsePagingDataViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     private var horse: Horse? = null
 
-    init {
-        view.cardView.setOnClickListener {
-           //NavHostFragment.findNavController(it.).navigate(R.id.action_navigation_search_to_detailInformationActivity)
-        }
-
-        view.cardView.scrollLayout.setOnClickListener {
-           //NavHostFragment.findNavController(context!!).navigate(R.id.action_navigation_search_to_viewingImagesActivity)
-        }
-    }
-
     fun bind(horse: Horse?) {
         name.text = horse?.name
         age.text = horse?.age
@@ -51,6 +41,14 @@ class HorsePagingDataViewHolder(view: View) : RecyclerView.ViewHolder(view) {
                 cardView.imageButtonAddFavorite.setImageResource(R.drawable.ic_favorite)
                 horse.favorite = true
             }
+        }
+
+        cardView.setOnClickListener {
+            //NavHostFragment.findNavController(it).navigate(R.id.action_navigation_search_to_detailInformationActivity)
+        }
+
+        cardView.scrollLayout.setOnClickListener {
+            //NavHostFragment.findNavController(context!!).navigate(R.id.action_navigation_search_to_viewingImagesActivity)
         }
     }
 
